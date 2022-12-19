@@ -1,0 +1,42 @@
+#include <iostream>
+#include <iomanip>
+#include <queue>
+using namespace std;
+int a[]=(924,335,768, 9, 33, 676, 7, 29, 665,1), n=10; 
+queue<int> digits [10];
+void distribute (int a[], queue<int> digits[], int p)
+{
+for(int i=0;i<n;i++)
+if (p=1)
+digits [a[i]%10].push(a[i]); 
+else if (p=2)
+digits[(a[i]/10)%10].push(a[i]); 
+else
+digits (a[i]/100].push(a[i]);
+}
+void collect(queue<int> digits[], int a[])
+{
+int i=0; 
+for(int k=0;k<10;k++)
+while (!digits[k].empty()) 
+{
+a[i++]=digits[k].front();
+digits[k].pop();
+}
+}
+int main() 
+{
+cout<<"\nGiven Numbers:"; 
+for(int i=0;i<n;i++)
+cout<<setw (5) <<a[i];
+distribute(a,digits,1); 
+collect (digits, a);
+distribute (a,digits,2);
+collect (digits,a);
+distribute(a,digits,3); 
+collect(digits,a);
+cout<<"\nSorted Numbers:"; 
+for(int i=0;i<n;i++) 
+cout<<setw (5) <<a[i];
+return 0;
+}

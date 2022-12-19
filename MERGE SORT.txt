@@ -1,0 +1,39 @@
+#include <iostream> 
+#include<iomanip>
+using namespace std;
+void merge (int a[], int start, int mid, int end)
+{
+int temp[10],i,j,k;
+for (i=start;i<=end;i++) 
+temp[i]=a[i]; 
+i=start; k=start; j=mid+1;
+while (i<=mid && j<= end) 
+if (temp[i]<temp[j]) 
+a[k++]=temp [i++];
+else
+a [k++]=temp [j++]; 
+while (i<=mid) a [k++]=temp [i++];
+while (j<=end) a [k++]=temp [j++];
+}
+void quicksort (int a[], int start, int end) 
+{
+if (start<end)
+{
+int mid=(start+end)/2; 
+quicksort(a, start, mid);
+quicksort(a,mid+1, end); 
+merge(a, start,mid, end); 
+}
+}
+int main() 
+{
+int a[]={1,0,2,9,3,8,4,7,6,5}, n=10; 
+cout<<"\nGiven Numbers: \n";
+for (int i=0;i<n;i++) 
+cout<<setw (5) <<a[i];
+quicksort (a, 0, n-1);
+cout<<"\nSorted Numbers: \n"; 
+for (int i=0;i<n;i++) 
+cout<<setw (5) <<a[i]; 
+return 0;
+}
